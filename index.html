@@ -11130,7 +11130,32 @@ ${elimCards}
                     if (aIsLost34 && !bIsLost34) return -1;
                     if (!aIsLost34 && bIsLost34) return 1;
                  }
+                 if (finaleEpisode && finaleEpisode.isTournamentFinale) {
+                    const lost1 = new Set(Array.isArray(finaleEpisode.lostRound1) ? finaleEpisode.lostRound1 : []);
+                    const lost2 = new Set(Array.isArray(finaleEpisode.lostRound2) ? finaleEpisode.lostRound2 : []);
+                    const lost3 = new Set(Array.isArray(finaleEpisode.lostRound3) ? finaleEpisode.lostRound3 : []);
+                    
+                    const aIsWinner = seasonData.winner === aName;
+                    const bIsWinner = seasonData.winner === bName;
+                    
+                    if (aIsWinner && !bIsWinner) return -1;
+                    if (!aIsWinner && bIsWinner) return 1;
+                    
+                    const aIsLost3 = lost3.has(aName);
+                    const bIsLost3 = lost3.has(bName);
+                    if (aIsLost3 && !bIsLost3) return -1;
+                    if (!aIsLost3 && bIsLost3) return 1;
 
+                    const aIsLost2 = lost2.has(aName);
+                    const bIsLost2 = lost2.has(bName);
+                    if (aIsLost2 && !bIsLost2) return -1;
+                    if (!aIsLost2 && bIsLost2) return 1;
+
+                    const aIsLost1 = lost1.has(aName);
+                    const bIsLost1 = lost1.has(bName);
+                    if (aIsLost1 && !bIsLost1) return -1;
+                    if (!aIsLost1 && bIsLost1) return 1;
+                 }
                  const aIsWinner = seasonData.winner === aName;
                  const bIsWinner = seasonData.winner === bName;
                  if (aIsWinner && !bIsWinner) return -1;
