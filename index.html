@@ -125,7 +125,8 @@
 
         .track-record-table .tr-win { background-color: #4169e1; color: white; font-weight: 700; }
         .track-record-table .tr-dbl { background-color: #1e40af; color: white; font-weight: 700; }
-        .track-record-table .tr-top2 { background-color: #00befe; color: #111827; }
+        .track-record-table .tr-top2 { background-color: #00befe; color: #111827; font-weight: 400; }
+        .track-record-table .tr-top2-bold { background-color: #00befe; color: #111827; font-weight: 700; }
         .track-record-table .tr-high { background-color: #add8e6; color: #111827; }
         .track-record-table .tr-high-team { background-color: #7fffd4; color: #111827; }
         .track-record-table .tr-safe { background-color: #ffffff; color: #111827; }
@@ -11155,7 +11156,11 @@ ${elimCards}
                 'st-lost1': 'tr-lost1', 'st-lost2': 'tr-lost2', 'st-lost3': 'tr-lost3',
                 'st-winner-of-season': 'tr-winner-of-season', 'st-beaver': 'tr-beaver', 'st-misscon': 'tr-misscon'
             };
-            const trCls = trMap[cls] || '';
+            let trCls = trMap[cls] || '';
+
+            if (cls === 'st-top2' && status === 'WIN') {
+                trCls = 'tr-top2-bold';
+            }
             return trCls ? `<td class="${trCls}">${status}</td>` : `<td>${status}</td>`;
         }
 
